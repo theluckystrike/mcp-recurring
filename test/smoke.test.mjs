@@ -116,7 +116,7 @@ test("schedule_get refuses an ambiguous partial client match with the candidate 
   assert.equal(JSON.parse(r.text).client, "Acme Inc");
 });
 
-test.skip("stdio: initialize, tools/list, monthly schedule, generate due, idempotent second run", async (t) => {
+test("stdio: initialize, tools/list, monthly schedule, generate due, idempotent second run", async (t) => {
   const box = sandbox();
   const c = client(box);
   t.after(() => c.close());
