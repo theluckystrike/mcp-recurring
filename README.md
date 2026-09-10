@@ -2,7 +2,7 @@
 
 <!-- mirror-seo:start -->
 
-**MCP server for recurring invoices and subscription billing.** Scheduled invoices, generated into your invoice book with PDFs.
+**MCP server for recurring invoices and subscription billing: handles scheduled invoice documents.** Scheduled invoices, generated into your invoice book with PDFs.
 
 Works with Claude Desktop, Claude Code, Cursor and any Model Context Protocol client. Runs on your own machine, or hosted with no install.
 
