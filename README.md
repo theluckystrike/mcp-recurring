@@ -1,13 +1,45 @@
 # mcp-recurring
 
+<!-- mirror-seo:start -->
+
+**MCP server for recurring invoices and subscription billing.** Scheduled invoices, generated into your invoice book with PDFs.
+
+Works with Claude Desktop, Claude Code, Cursor and any Model Context Protocol client. Runs on your own machine, or hosted with no install.
+
+## Install
+
+**Hosted, nothing to install.** Point an MCP client at `https://mcp.zovo.one/mcp/recurring` over streamable-http and send `Authorization: Bearer <token>`, where the token is a Pro key or a free anonymous one from <https://mcp.zovo.one/mcp/token>.
+
+**Claude Desktop, one click.** Download `recurring.mcpb` from the [latest release](https://github.com/theluckystrike/mcp-servers/releases/latest) and double-click it.
+
+**From source.** The mirror is self-contained: every `@theluckystrike/*` dependency is vendored, so a fresh clone builds with no extra setup.
+
+```sh
+git clone https://github.com/theluckystrike/mcp-recurring.git
+cd mcp-recurring
+npm install && npm run build
+```
+
+Then point your client at the built entry point:
+
+```json
+{
+  "mcpServers": {
+    "recurring": {
+      "command": "node",
+      "args": ["/absolute/path/to/mcp-recurring/dist/index.js"]
+    }
+  }
+}
+```
+
+> `@theluckystrike/mcp-recurring` is **not published on npm yet**, so an `npx -y @theluckystrike/mcp-recurring` command will fail. The three paths above are the working ones and each is exercised by CI.
+
 ![recurring demo](https://raw.githubusercontent.com/theluckystrike/mcp-servers/main/assets/demo-recurring.gif)
-
-**One-click install:** download `recurring.mcpb` from the [latest release](https://github.com/theluckystrike/mcp-servers/releases/latest) and double-click it in Claude Desktop.
-
-**Hosted endpoint (no install):** `https://mcp.zovo.one/mcp/recurring` (streamable-http; send `Authorization: Bearer <Pro key or anonymous token from https://mcp.zovo.one/mcp/token>`).
 
 Read-only mirror of [mcp-servers/servers/recurring](https://github.com/theluckystrike/mcp-servers/tree/main/servers/recurring). See [MIRROR.md](MIRROR.md).
 
+<!-- mirror-seo:end -->
 
 Say "bill Acme 12 hours at 90 EUR on the 1st of every month" once, and stop remembering it. This MCP server stores recurring invoice schedules -- client, line items, cadence, start and end dates -- and then, when you ask, creates the invoices that have actually fallen due as real records in the [invoice server](../invoice), with its number series, its clients and its A4 PDF. Generation is idempotent: one invoice per schedule per period, keyed by the occurrence date, so running the billing run twice on the same day creates nothing the second time. It also answers "what falls due in the next 30 days" and "what will I invoice per month for the next year". Everything is stored in plain JSON files on your own machine; nothing is uploaded anywhere.
 
