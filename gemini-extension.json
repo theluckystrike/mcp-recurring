@@ -1,6 +1,6 @@
 {
   "name": "mcp-recurring",
-  "version": "0.21.0",
+  "version": "0.22.0",
   "description": "MCP server for recurring invoices and subscription billing: handles scheduled invoice documents. Scheduled invoices, generated into your invoice book with PDFs.",
   "settings": [
     {
